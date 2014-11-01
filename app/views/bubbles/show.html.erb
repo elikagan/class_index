@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @bubble.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @bubble.body %>
+</p>
+
+<%= link_to 'Edit', edit_bubble_path(@bubble) %> |
+<%= link_to 'Back', bubbles_path %>
