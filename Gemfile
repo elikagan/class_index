@@ -37,3 +37,4 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem "mongoid", github: "mongoid/mongoid"
+gem 'devise', '~> 3.4.1'
