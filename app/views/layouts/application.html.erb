@@ -11,7 +11,7 @@
 	
 
 	<% if current_user %>
-			<span>Welcome <%=current_user.name %>.</span>
+			<span>Welcome <%= link_to current_user.name, current_user %>.</span>
 			<span><%= link_to "Logout", sessions_path, method: :delete %></span>
 
 		<% else %>
