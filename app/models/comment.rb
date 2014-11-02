@@ -1,9 +1,9 @@
-class Bubble
+class Comment
   include Mongoid::Document
-  field :title, type: String
+  field :bubble_id, type: Integer
   field :body, type: String
 
+  
   belongs_to :user
-  has_many :comments
-
+  belongs_to :bubble
 end

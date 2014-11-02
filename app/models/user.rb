@@ -7,5 +7,7 @@ class User
   field :password_digest, type: String
 
   has_many :bubbles
+  has_many :comments
+
 
 end

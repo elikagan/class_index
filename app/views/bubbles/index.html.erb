@@ -11,14 +11,17 @@
         <div><%= link_to bubble.title, bubble %></div>
         
         <% if current_user == bubble.user %> 
-          <div>Posted by <%= link_to 'you', current_user %></div>
+          <div>Posted by <%= link_to 'you', current_user %> | <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %></div>
+
+          
           <% else %>
-            <div>Posted by <%= link_to bubble.user.name, bubble.user %></div>
+            <div>Posted by <%= link_to bubble.user.name, bubble.user %> | <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %></div>
         <% end %>
       
         <% if current_user == bubble.user %> 
         <div><%= link_to 'Edit', edit_bubble_path(bubble) %> | <%= link_to 'Delete', bubble, method: :delete, data: { confirm: 'Are you sure?' } %></div>
         <% end %>
+
       
     <% end %>
 
