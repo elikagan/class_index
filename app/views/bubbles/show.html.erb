@@ -9,6 +9,7 @@
   <strong>Body:</strong>
   <%= @bubble.body %>
 </p>
-
-<%= link_to 'Edit', edit_bubble_path(@bubble) %> |
+<% if current_user.id == @bubble.user_id %>
+	<%= link_to 'Edit', edit_bubble_path(@bubble) %>  |
+<% end %>
 <%= link_to 'Back', bubbles_path %>

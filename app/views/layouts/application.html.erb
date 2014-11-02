@@ -7,14 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<span><strong><%= link_to 'class#index', bubbles_path  %></strong></span>
+	
 
 	<% if current_user %>
-			Welcome <%=current_user.name %>.
-		<%= link_to "Logout", sessions_path, method: :delete %>
+			<span>Welcome <%=current_user.name %>.</span>
+			<span><%= link_to "Logout", sessions_path, method: :delete %></span>
 
 		<% else %>
 			<%= link_to "Login", new_sessions_path%>
 			<%= link_to "Sign up", new_user_path %>
+			<br>
 	<% end %>
 
 <%= yield %>

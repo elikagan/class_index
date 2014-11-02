@@ -1,20 +1,27 @@
-<h1>class#index</h1>
 
-<%= link_to 'New Bubble', new_bubble_path %>
 
-<table>
+<% if current_user %>
+  <%= link_to 'Create a new post', new_bubble_path %> 
+  <br>
+<% end %>
 
-  <tbody>
+
     <% @bubbles.each do |bubble| %>
-      <tr>
-        <td><%= bubble.title %></td>
-        <td><%= link_to 'Show', bubble %></td>
-        <td><%= link_to 'Edit', edit_bubble_path(bubble) %></td>
-        <td><%= link_to 'Destroy', bubble, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <br>
+        <div><%= link_to bubble.title, bubble %></div>
+        
+        <% if current_user == bubble.user %> 
+          <div>Posted by <%= link_to 'you', current_user %></div>
+          <% else %>
+            <div>Posted by <%= link_to bubble.user.name, bubble.user %></div>
+        <% end %>
+      
+        <% if current_user == bubble.user %> 
+        <div><%= link_to 'Edit', edit_bubble_path(bubble) %> | <%= link_to 'Delete', bubble, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        <% end %>
+      
     <% end %>
-  </tbody>
-</table>
+
 
 <br>
 

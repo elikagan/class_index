@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  
+  root 'bubbles#index'
+
   get 'sessions/create'
 
   get 'sessions/new'
 
   get 'sessions/destroy'
+
+  
 
   resources :bubbles
   resources :users, except: [:destroy]

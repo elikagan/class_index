@@ -1,5 +1,8 @@
 class BubblesController < ApplicationController
   before_action :set_bubble, only: [:show, :edit, :update, :destroy]
+  # before_action :current_user, except: [:index, :show]
+  before_action :authorized_user, only: [:edit, :update, :destroy]
+  
 
   # GET /bubbles
   # GET /bubbles.json
@@ -14,7 +17,7 @@ class BubblesController < ApplicationController
 
   # GET /bubbles/new
   def new
-    @bubble = Bubble.new
+    @bubble = current_user.bubbles.build
   end
 
   # GET /bubbles/1/edit
@@ -24,7 +27,7 @@ class BubblesController < ApplicationController
   # POST /bubbles
   # POST /bubbles.json
   def create
-    @bubble = Bubble.new(bubble_params)
+    @bubble = current_user.bubbles.build(bubble_params)
 
     respond_to do |format|
       if @bubble.save
@@ -65,6 +68,11 @@ class BubblesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bubble
       @bubble = Bubble.find(params[:id])
+    end
+
+def authorized_user
+      @bubble = current_user.bubbles.find_by(id: params[:id])
+      redirect_to bubbles_path, notice: "Not authorized to edit this posting" if @bubble.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
