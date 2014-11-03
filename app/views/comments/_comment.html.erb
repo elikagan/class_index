@@ -1,8 +1,9 @@
 <%= div_for(comment) do |f| %>
   <p> <%= comment.body %></p>
-  <strong><p> Posted by <%= link_to comment.user.name, comment.user%> at </p></strong>
+  <p> Posted by <%= link_to comment.user.name, comment.user%> | <%= comment.time_ago_in_words(comment.created_at) %> ago</p>
 
-            <br>   
+
+            <br> <br>   
   </div>
 <% end %>
 

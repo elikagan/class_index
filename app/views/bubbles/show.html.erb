@@ -5,12 +5,19 @@
   <%= @bubble.title %>
 </p>
 
+<p>Posted <%= @bubble.time_ago_in_words(@bubble.created_at)%> ago.</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @bubble.tag %>
+</p>
+
 <p>
   <strong>Body:</strong>
   <%= @bubble.body %>
 </p>
-<% if current_user.id == @bubble.user_id %>
-	<%= link_to 'Edit', edit_bubble_path(@bubble) %>  |
+<% if current_user == @bubble.user %>
+	<%= link_to 'Edit', edit_bubble_path(@bubble) %> | <%= link_to 'Delete', @bubble, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 <br><br>
@@ -22,8 +29,7 @@
 
 <%= form_for [@bubble, Comment.new] do |f| %>
   <div class="field">
-    <%= f.text_area :body %>
+    <%= f.text_area :body, :placeholder => "Add your comment here"  %>
   </div>
-  <br>
   <%= f.submit "Add Comment" %>
 <% end %>

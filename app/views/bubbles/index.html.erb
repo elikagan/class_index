@@ -8,14 +8,17 @@
 
     <% @bubbles.each do |bubble| %>
         <br>
+     
         <div><%= link_to bubble.title, bubble %></div>
         
         <% if current_user == bubble.user %> 
-          <div>Posted by <%= link_to 'you', current_user %> | <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %></div>
+          <div><%= bubble.tag%> | Posted by <%= link_to 'you', current_user %> | <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %> | <%= bubble.time_ago_in_words(bubble.created_at) %>
+             
+  <br></div>
 
           
           <% else %>
-            <div>Posted by <%= link_to bubble.user.name, bubble.user %> | <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %></div>
+            <div>Posted by <%= link_to bubble.user.name, bubble.user %> | <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %> | <%= bubble.time_ago_in_words(bubble.created_at) %></div>
         <% end %>
       
         <% if current_user == bubble.user %> 

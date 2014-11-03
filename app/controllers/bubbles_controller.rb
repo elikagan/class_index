@@ -77,6 +77,6 @@ def authorized_user
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bubble_params
-      params.require(:bubble).permit(:title, :body)
+      params.require(:bubble).permit(:title, :body, :tag)
     end
 end
