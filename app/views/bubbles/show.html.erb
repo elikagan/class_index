@@ -26,10 +26,11 @@
 <div id="comments">
   <%= render :partial => @bubble.comments %>
 </div>
-
-<%= form_for [@bubble, Comment.new] do |f| %>
-  <div class="field">
-    <%= f.text_area :body, :placeholder => "Add your comment here"  %>
-  </div>
-  <%= f.submit "Add Comment" %>
+<% if current_user %>
+  <%= form_for [@bubble, Comment.new] do |f| %>
+    <div class="field">
+      <%= f.text_area :body, :placeholder => "Add your comment here"  %>
+    </div>
+    <%= f.submit "Add Comment" %>
+  <% end %>
 <% end %>

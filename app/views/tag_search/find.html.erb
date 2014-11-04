@@ -1,12 +1,10 @@
+<br>
+<br>
+Posts that have tag <%= @tag %>
+<br>
 
 
-<% if current_user %>
-  <%= link_to 'Create a new post', new_bubble_path %> 
-  <br>
-<% end %>
-
-
-    <% @bubbles.each do |bubble| %>
+<%@bubbles.each do |bubble| %>
         <br>
      
         <div><%= link_to bubble.title, bubble %></div>
@@ -20,8 +18,7 @@
           Posted by <%= link_to bubble.user.name, bubble.user %> |
           <% end %>
           <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %> | 
-          <%= bubble.time_ago_in_words(bubble.created_at) %> ago | 
-          <%= bubble.score %>  
+          <%= bubble.time_ago_in_words(bubble.created_at) %> ago  
           <br>
        </div>
 
@@ -31,7 +28,3 @@
 
       
     <% end %>
-
-
-<br>
-

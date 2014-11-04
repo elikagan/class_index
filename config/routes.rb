@@ -22,6 +22,17 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy]
   resource :sessions, only: [:create, :new, :destroy]
 
+
+  get 'tag_search/index' => 'tag_search#index', as: :tag_search
+
+  get 'tag_search/find' => 'tag_search#find', as: :find
+
+  
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
