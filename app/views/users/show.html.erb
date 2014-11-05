@@ -1,14 +1,38 @@
-<p id="notice"><%= notice %></p>
-
+<br>
+<br>
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <strong>Posts by <%= @user.name %> </strong>
 </p>
+  <% @user.bubbles.sort_by!(&:created_at).reverse.each do |bubble|%>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+	        <br>
+	     
+	        <div><%= link_to bubble.title, bubble %></div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+	        <%= link_to "upvote", upvote_path(:id => bubble.id) %>
+	        <%= bubble.vote_count %>
+	        <%= link_to "downvote", downvote_path(:id => bubble.id) %>
+	        
+	         
+	        <div>
+	          <%= link_to bubble.tag, find_path(:tag => bubble.tag) %> | 
+	          <% if current_user == bubble.user %>
+	          Posted by <%= link_to 'you', current_user %> |
+	          <% else %>
+	          Posted by <%= link_to bubble.user.name, bubble.user %> |
+	          <% end %>
+	          <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %> | 
+	          <%= bubble.time_ago_in_words(bubble.created_at) %> ago |
+	          modified <%= bubble.time_ago_in_words(bubble.updated_at) %> ago | 
+	        
+	          <%= bubble.score %>  
+	          <br>
+	       </div>
+
+	        <% if current_user == bubble.user %> 
+	        <div><%= link_to 'Edit', edit_bubble_path(bubble) %> | <%= link_to 'Delete', bubble, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+	        <% end %>
+
+	      
+	    <% end %>

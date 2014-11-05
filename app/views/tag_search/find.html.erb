@@ -1,13 +1,19 @@
 <br>
 <br>
-Posts that have tag <%= @tag %>
+<strong>Posts that have tag <%= @tag %></strong>
 <br>
 
-
-<%@bubbles.each do |bubble| %>
-        <br>
+<% @bubbles.sort_by!(&:score).reverse.each do |bubble|%>
+ <br>
      
         <div><%= link_to bubble.title, bubble %></div>
+
+
+        <%= link_to "upvote", upvote_path(:id => bubble.id) %>
+        <%= bubble.vote_count %>
+        <%= link_to "downvote", downvote_path(:id => bubble.id) %>
+        
+
         
          
         <div>
@@ -18,7 +24,10 @@ Posts that have tag <%= @tag %>
           Posted by <%= link_to bubble.user.name, bubble.user %> |
           <% end %>
           <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %> | 
-          <%= bubble.time_ago_in_words(bubble.created_at) %> ago  
+          <%= bubble.time_ago_in_words(bubble.created_at) %> ago |
+          modified <%= bubble.time_ago_in_words(bubble.updated_at) %> ago | 
+        
+          <%= bubble.score %>  
           <br>
        </div>
 
@@ -27,4 +36,4 @@ Posts that have tag <%= @tag %>
         <% end %>
 
       
-    <% end %>
+<% end %>

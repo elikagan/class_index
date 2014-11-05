@@ -7,7 +7,25 @@ class BubblesController < ApplicationController
   # GET /bubbles
   # GET /bubbles.json
   def index
-    @bubbles = Bubble.all
+    @bubbles = Bubble.desc(:score)
+  end
+
+  def upvote
+    @bubble = Bubble.find(params[:id])
+      if @bubble.save
+      @bubble.vote_count += 1
+      @bubble.bubble_score
+      redirect_to :back
+    end
+  end
+
+  def downvote
+    @bubble = Bubble.find(params[:id])
+    if @bubble.save
+      @bubble.vote_count -= 1
+      @bubble.bubble_score
+      redirect_to :back
+    end
   end
 
   # GET /bubbles/1
@@ -33,6 +51,7 @@ class BubblesController < ApplicationController
       if @bubble.save
         format.html { redirect_to @bubble, notice: 'Posting was successfully created.' }
         format.json { render :show, status: :created, location: @bubble }
+        @bubble.bubble_score
       else
         format.html { render :new }
         format.json { render json: @bubble.errors, status: :unprocessable_entity }

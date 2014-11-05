@@ -1,5 +1,6 @@
 
-
+<br>
+<br>
 <% if current_user %>
   <%= link_to 'Create a new post', new_bubble_path %> 
   <br>
@@ -10,6 +11,13 @@
         <br>
      
         <div><%= link_to bubble.title, bubble %></div>
+
+
+        <%= link_to "upvote", upvote_path(:id => bubble.id) %>
+        <%= bubble.vote_count %>
+        <%= link_to "downvote", downvote_path(:id => bubble.id) %>
+        
+
         
          
         <div>
@@ -20,7 +28,9 @@
           Posted by <%= link_to bubble.user.name, bubble.user %> |
           <% end %>
           <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %> | 
-          <%= bubble.time_ago_in_words(bubble.created_at) %> ago | 
+          <%= bubble.time_ago_in_words(bubble.created_at) %> ago |
+          modified <%= bubble.time_ago_in_words(bubble.updated_at) %> ago | 
+        
           <%= bubble.score %>  
           <br>
        </div>

@@ -10,13 +10,17 @@ Rails.application.routes.draw do
 
   get 'sessions/destroy'
 
-  
+  get 'bubbles/upvote' => 'bubbles#upvote', as: :upvote
+  get 'bubbles/downvote' => 'bubbles#downvote', as: :downvote
+
+  get 'comments/upvotecomment' => 'comments#upvotecomment', as: :upvotecomment
+  get 'comments/downvotecomment' => 'comments#downvotecomment', as: :downvotecomment
+
 
   resources :bubbles do
-    member do
-    end
 
-    resources :comments
+
+  resources :comments
   end
 
   resources :users, except: [:destroy]
@@ -27,8 +31,10 @@ Rails.application.routes.draw do
 
   get 'tag_search/find' => 'tag_search#find', as: :find
 
+
   
 
+  
 
 
 

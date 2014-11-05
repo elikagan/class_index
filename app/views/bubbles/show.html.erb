@@ -5,12 +5,23 @@
   <%= @bubble.title %>
 </p>
 
-<p>Posted <%= @bubble.time_ago_in_words(@bubble.created_at)%> ago.</p>
+<%= link_to "upvote", upvote_path(:id => @bubble.id) %>
+<%= @bubble.vote_count %>
+<%= link_to "downvote", downvote_path(:id => @bubble.id) %>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @bubble.tag %>
-</p>
+
+<%= link_to @bubble.tag, find_path(:tag => @bubble.tag) %> | 
+          <% if current_user == @bubble.user %>
+          Posted by <%= link_to 'you', current_user %> |
+          <% else %>
+          Posted by <%= link_to @bubble.user.name, @bubble.user %> |
+          <% end %>
+          <%= link_to @bubble.comments.count, @bubble %><%= link_to ' Comments', @bubble %> | 
+          <%= @bubble.time_ago_in_words(@bubble.created_at) %> ago |
+          modified <%= @bubble.time_ago_in_words(@bubble.updated_at) %> ago | 
+        
+          <%= @bubble.score %> 
+
 
 <p>
   <strong>Body:</strong>
@@ -24,8 +35,10 @@
 <%= @bubble.comments.count %> Comments
 
 <div id="comments">
-  <%= render :partial => @bubble.comments %>
+  <%= render :partial => @bubble.comments.sort_by!(&:score).reverse
+ %>
 </div>
+
 <% if current_user %>
   <%= form_for [@bubble, Comment.new] do |f| %>
     <div class="field">

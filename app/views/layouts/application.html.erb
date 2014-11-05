@@ -11,14 +11,16 @@
 
 
 		<% if current_user %>
-				<span> | <%= link_to current_user.name, current_user %> | </span>
-				<span><%= link_to "Logout", sessions_path, method: :delete %></span>
+				<span> | <%= link_to current_user.name, current_user %></span>
+				<span> | <%= link_to "Account", edit_user_path(current_user) %></span>
+				<span> | <%= link_to "Logout", sessions_path, method: :delete %></span>
 
 			<% else %>
 				<%= link_to "Login", new_sessions_path%>
 				<%= link_to "Sign up", new_user_path %>
 				<br>
 		<% end %>
+
 
 	<%= yield %>
 

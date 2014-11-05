@@ -1,7 +1,20 @@
 <%= div_for(comment) do |f| %>
   <p> <%= comment.body %></p>
-  <p> Posted by <%= link_to comment.user.name, comment.user%> | <%= comment.time_ago_in_words(comment.created_at) %> ago</p>
-  </div>
+
+	<%= link_to "upvote", upvotecomment_path(:id => comment.id) %>
+	<%= comment.vote_count %> |
+  <%= link_to "downvote", downvotecomment_path(:id => comment.id) %>
+  
+
+	<% if current_user == @bubble.user %>
+          Commented by <%= link_to 'you', current_user %> | <%= comment.time_ago_in_words(comment.created_at) %> ago
+  <% else %>
+  Commented by <%= link_to @bubble.user.name, @bubble.user %> | <%= comment.time_ago_in_words(comment.created_at) %> ago
+
+
+  <% end %> 
+
+  | <%= comment.score %>
 <% end %>
 
 

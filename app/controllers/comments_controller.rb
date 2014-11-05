@@ -1,5 +1,31 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :upvotecomment, :downvotecomment, :index]
+
+
+def index
+    @comment = Comment.desc(:score)
+end
+
+
+
+def upvotecomment
+    @comment = Comment.find(params[:id])
+    @comment.vote_count += 1
+    if @comment.save
+      @comment.comment_score
+      redirect_to :back
+    end
+  end
+
+  def downvotecomment
+    @comment = Comment.find(params[:id])
+    @comment.vote_count -= 1
+    if @comment.save
+      @comment.comment_score
+      redirect_to :back
+    end
+  end
+
 
 
   def create
@@ -20,6 +46,11 @@ class CommentsController < ApplicationController
       end
     end
   end
+
+
+
+
+
 
 
   # DELETE /comments/1
