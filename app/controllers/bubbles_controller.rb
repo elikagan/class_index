@@ -8,12 +8,15 @@ class BubblesController < ApplicationController
   # GET /bubbles.json
   def index
     @bubbles = Bubble.desc(:score)
+
+
   end
 
   def upvote
     @bubble = Bubble.find(params[:id])
       if @bubble.save
       @bubble.vote_count += 1
+      @bubble.time_bonus
       @bubble.bubble_score
       redirect_to :back
     end
@@ -23,10 +26,14 @@ class BubblesController < ApplicationController
     @bubble = Bubble.find(params[:id])
     if @bubble.save
       @bubble.vote_count -= 1
+      @bubble.time_bonus
       @bubble.bubble_score
+      
+
       redirect_to :back
     end
   end
+
 
   # GET /bubbles/1
   # GET /bubbles/1.json
@@ -51,6 +58,7 @@ class BubblesController < ApplicationController
       if @bubble.save
         format.html { redirect_to @bubble, notice: 'Posting was successfully created.' }
         format.json { render :show, status: :created, location: @bubble }
+        @bubble.time_bonus
         @bubble.bubble_score
       else
         format.html { render :new }

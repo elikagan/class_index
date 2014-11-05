@@ -8,6 +8,9 @@
 
 
     <% @bubbles.each do |bubble| %>
+        <% bubble.time_bonus %>
+        <% bubble.bubble_score %>
+
         <br>
      
         <div><%= link_to bubble.title, bubble %></div>
@@ -31,7 +34,8 @@
           <%= bubble.time_ago_in_words(bubble.created_at) %> ago |
           modified <%= bubble.time_ago_in_words(bubble.updated_at) %> ago | 
         
-          <%= bubble.score %>  
+          <%= bubble.score %>
+
           <br>
        </div>
 
