@@ -2,25 +2,34 @@
 <html>
 <head>
   <title>ClassIndex</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+ 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+<link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 
+ true %>
+ <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+ <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-	<tr><strong><%= link_to 'class#index', bubbles_path  %></strong></tr>
+
+<div class="big_gear"><%= link_to 'C', bubbles_path  %></div>
+	
 
 
-		<% if current_user %>
-				<span> | <%= link_to current_user.name, current_user %></span>
-				<span> | <%= link_to "Account", edit_user_path(current_user) %></span>
-				<span> | <%= link_to "Logout", sessions_path, method: :delete %></span>
+		<div class="user_header_items">
+			<% if current_user %>
+				<span class="user_header_link"> <%= link_to "My posts", current_user %></span>
+				<span class="user_header_link"><%= link_to "Account", edit_user_path(current_user) %></span>
+				<span class="user_header_link"><%= link_to "Logout", sessions_path, method: :delete %></span>
 
 			<% else %>
-				<%= link_to "Login", new_sessions_path%>
-				<%= link_to "Sign up", new_user_path %>
+				<span class="user_header_link"><%= link_to "Login", new_sessions_path%></span> 
+				<span class="user_header_link"><%= link_to "Sign up", new_user_path %></span>
 				<br>
-		<% end %>
-
+			<% end %>
+		</div>
 
 	<%= yield %>
 

@@ -14,24 +14,22 @@ class BubblesController < ApplicationController
 
   def upvote
     @bubble = Bubble.find(params[:id])
-      if @bubble.save
+
       @bubble.vote_count += 1
       @bubble.time_bonus
       @bubble.bubble_score
       redirect_to :back
-    end
+
   end
 
   def downvote
     @bubble = Bubble.find(params[:id])
-    if @bubble.save
+
       @bubble.vote_count -= 1
       @bubble.time_bonus
       @bubble.bubble_score
-      
-
       redirect_to :back
-    end
+
   end
 
 

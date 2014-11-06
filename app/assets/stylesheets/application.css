@@ -1,15 +1,225 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+a, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+td{
+	vertical-align: top;
+}
+
+body{
+	background-color: #f4f1e9;
+
+}
+
+.big_gear{
+	background-image: url('/assets/big_gear4.svg');
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: -27px;
+	top: -27px;
+	text-align: center;
+	font-size: 80px;
+	font-family: 'Bitter', serif;
+	font-weight: 600;
+	vertical-align: middle;
+	padding-top: 50px;
+	padding-left: 5px;
+	color: #3e5b68;
+	transform-origin: left top;
+	transform: scale(.4,.4);
+	transition: all .3s ease-in-out;
+}
+
+.big_gear:hover{
+	transform-origin: left top;
+	transform: scale(.5,.5);
+	transition: all .3s ease-in-out;
+	color: #24aace;
+}
+
+.site_name{
+	position: absolute;
+	left: 115px;
+	top: 16px;
+	font-family: 'Bitter', serif;
+	font-size: 20px;
+	color: #afafaf;
+}
+
+.user_header_items{
+	position: absolute;
+	width: 100%;
+	text-align: right;
+	color: #afafaf;
+	font-family: 'Bitter', serif;
+	font-size: 12px;
+	top: 20px;
+	right: 40px;
+}
+
+.user_header_link{
+	margin-left: 14px;
+}
+
+.user_header_link:hover{
+	color: #24aace;
+	transition: all .3s ease-in-out;
+}
+
+
+.create_new_post{
+	position: absolute;
+	left: 108px;
+	top: 65px;
+	font-family: 'Bitter', serif;
+	text-decoration: none;
+	font-size: 16px;
+	color: #afafaf;
+	font-weight: 500;
+	transition: all .3s ease-in-out;
+	transform-origin: left 50%;
+  	
+
+
+}
+
+.create_new_post:hover{
+	transition: all .3s ease-in-out;
+	color: #24aace;
+	transform-origin: left 50%;
+	transform: scale(1.1,1.1);
+	transition: all .3s ease-in-out;
+}
+
+.dashed_line{
+	width:95%;
+	margin-left: 40px;
+	height: 1px;
+	border-top: dashed 1px #afafaf;
+	margin-top: 20px;
+	opacity: .5;
+}
+
+.bubbles_container{
+	margin-top: 100px;
+}
+
+
+.bubble_table{
+	margin-top: 18px;
+	margin-left: 80px;
+	transition: all .3s ease-in-out;
+
+}
+
+.bubble_object_container{
+	transform-origin: left 50%;
+	transition: all .3s ease-in-out;
+
+}
+
+.bubble_object_container:hover{
+	transform-origin: left 50%;
+	transition: all .3s ease-in-out;
+  	transform: scale(1.1,1.1);
+	
+}
+
+#bubble_title{
+	font-family: 'Bitter', serif;
+	text-decoration: none;
+	font-size: 2vw;
+	color: #3e5b68;
+	font-weight: 500;
+	width: 60vw;
+	margin-bottom: 5px
+}
+
+#bubble_title:link {
+	color: #3e5b68;
+}
+
+/* mouse over link */
+#bubble_title:hover {
+	color: #209bc6;
+}
+
+/* selected link */
+#bubble_title:active {
+	color: red;
+}
+
+.voting_container{
+	margin-right: 10px;
+	height: 50px;
+	width: 50px;
+
+}
+
+.voting_table_cell{
+	vertical-align: top;
+}
+
+.arrow{
+	color:#afafaf;
+	text-align: center;
+	margin-bottom: 2px;
+	transition: all .3s ease-in-out;
+}
+
+.arrow:hover{
+	color: #209bc6;
+	transition: all .3s ease-in-out;
+  	transform: scale(1.1,1.1);
+}
+
+.votes{
+	font-family: 'Bitter', serif;
+	text-align: center;
+	color: #afafaf;
+	font-size: 14px;
+	vertical-align: middle;
+}
+
+.tag_link{
+	color: #24aace;
+	font-family: 'Bitter', serif;
+	font-weight: 500;
+	font-size: 15px;
+	
+}
+
+.tag_link:hover{
+	color: #209bc6;
+	
+}
+
+.meta_data_row{
+	font-family: 'Lekton', sans-serif;
+	color: #afafaf;
+	letter-spacing: -1;
+	font-size: 13px;
+	margin-top: 4px;
+}
+
+.meta_link{
+	margin-left: 14px;
+	margin-right: 14px;
+
+}
+
+.meta_link:hover{
+	color: #24aace;
+}
+
+.score_stuff{
+	position: absolute;
+	right: 40px;
+	font-family: 'Lekton', sans-serif;
+	color: #afafaf;
+	letter-spacing: -1;
+	font-size: 13px;
+}

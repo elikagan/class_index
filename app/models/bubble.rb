@@ -15,20 +15,17 @@ class Bubble
 
 
   def time_bonus
+    
     if Time.now.to_i - self.created_at.to_i < 3600
       time_bonus_value = 200
-    end 
-    if Time.now.to_i - self.created_at.to_i > 3600 && Time.now.to_i - self.created_at.to_i < 86400
+    elsif Time.now.to_i - self.created_at.to_i < 86400
       time_bonus_value = 50
-    end 
-    if Time.now.to_i - self.created_at.to_i > 86400 && Time.now.to_i - self.created_at.to_i < 604800
+    elsif Time.now.to_i - self.created_at.to_i < 604800
       time_bonus_value = 20
-    end 
-    if Time.now.to_i - self.created_at.to_i > 604800
+    else
       time_bonus_value = 0
     end
-        self.update_attribute(:time_bonus_value, time_bonus_value)
-
+    self.update_attribute(:time_bonus_value, time_bonus_value)
   end
 
   def bubble_score
