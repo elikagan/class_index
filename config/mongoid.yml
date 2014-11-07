@@ -59,8 +59,7 @@ production:
   sessions:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>
-      username: elikagan
-      password: 7321Woodrow
+
 
 test:
   sessions:
