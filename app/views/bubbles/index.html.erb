@@ -62,43 +62,50 @@
 <div class="bubbles_container">
 
   <% @bubbles.each do |bubble| %>
-  <% bubble.time_bonus %><% bubble.bubble_score %>
+    <% bubble.time_bonus %><% bubble.bubble_score %>
 
 
-  <div class="dashed_line"></div>
+    <div class="dashed_line"></div>
 
-  <table class="bubble_table">
-    
+    <table class="bubble_table">
 
-
-
-    <td class_"voting_table_cell">
-      <div class="voting_container">
-          <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-up"), upvote_path(:id => bubble.id) %></div>
-
-
-          <div class="votes"><%= bubble.vote_count %></div>
-     
-
- 
-          <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-down"), downvote_path(:id => bubble.id) %></div>
-
-      </div>
-    </td>
-    <td>
-      <span class="score_stuff"><%= bubble.score %> | <%= bubble.time_bonus_value %></span>
-
-      <div class="bubble_object_container">
-        <div class="bubble_title"><%= link_to bubble.title, bubble %></div>
+      <td class_"voting_table_cell">
         
-<!-- why does heroku HATE this ???-->
+        <div class="voting_container">
+            <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-up"), upvote_path(:id => bubble.id) %></div>
 
 
+            <div class="votes"><%= bubble.vote_count %></div>
+       
 
-      </div>
-    </td>
+   
+            <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-down"), downvote_path(:id => bubble.id) %></div>
 
-    </table>
+        </div>
+      </td>
+      <td>
+        <span class="score_stuff"><%= bubble.score %> | <%= bubble.time_bonus_value %></span>
+
+        <div class="bubble_object_container">
+          <div class="bubble_title"><%= link_to bubble.title, bubble %></div>
+          
+  <!-- why does heroku HATE this ???-->
+
+
+          <div class="meta_data_row">  
+            <span class="tag_link"><%= link_to bubble.tag, find_path(:tag => bubble.tag) %>  </span>
+            <span class="meta_link"><%= link_to bubble.user.name, bubble.user %></span>
+            <%= bubble.time_ago_in_words(bubble.created_at) %> ago
+            <span class="meta_link"><%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %>
+            </span>
+          </div>
+
+  <!-- From here up -->
+
+        </div>
+      </td>
+
+      </table>
 
   <% end %>
    
