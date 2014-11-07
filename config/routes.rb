@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
 
   resources :bubbles do
+    member do
+    end
 
 
   resources :comments

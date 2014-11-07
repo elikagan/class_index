@@ -90,15 +90,16 @@
           <div class="bubble_title"><%= link_to bubble.title, bubble %></div>
           
   <!-- why does heroku HATE this ???-->
+  <div>
+
+    <%= link_to bubble.tag, find_path(:tag => bubble.tag) %>
+    <%= link_to bubble.user.name, bubble.user %>
+    <%= bubble.time_ago_in_words(bubble.created_at) %> ago
+    <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %>
+
+  </div>
 
 
-          <div class="meta_data_row">  
-            <span class="tag_link"><%= link_to bubble.tag, find_path(:tag => bubble.tag) %>  </span>
-            <span class="meta_link"><%= link_to bubble.user.name, bubble.user %></span>
-            <%= bubble.time_ago_in_words(bubble.created_at) %> ago
-            <span class="meta_link"><%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %>
-            </span>
-          </div>
 
   <!-- From here up -->
 

@@ -38,6 +38,7 @@ class BubblesController < ApplicationController
   # GET /bubbles/1
   # GET /bubbles/1.json
   def show
+    @bubble = Bubble.find(params[:id])
 
   end
 
