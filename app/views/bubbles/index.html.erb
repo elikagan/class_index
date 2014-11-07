@@ -94,13 +94,7 @@
 <!-- why does heroku HATE this ???-->
 
 
-        <div class="meta_data_row">  
-          <span class="tag_link"><%= link_to bubble.tag, find_path(:tag => bubble.tag) %>  </span>
-          <span class="meta_link"><%= link_to bubble.user.name, bubble.user %></span>
-          <%= bubble.time_ago_in_words(bubble.created_at) %> ago
-          <span class="meta_link"><%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %>
-          </span>
-        </div>
+
       </div>
     </td>
 
@@ -126,26 +120,26 @@ function closeCreateForm() {
   document.getElementById("submit_cancel_container").style.marginBottom = "150px";
 }
 
-document.getElementsByClassName("arrow").addEventListener("click", checkIfVoted);
+// document.getElementsByClassName("arrow").addEventListener("click", checkIfVoted);
 
-function checkIfVoted() {
-  // for (var i = 0; i <= @bubbles.length ; i++) {
+// function checkIfVoted() {
+//   // for (var i = 0; i <= @bubbles.length ; i++) {
 
-  var counter = 0;
+//   var counter = 0;
 
-    counterCheck(); 
+//     counterCheck(); 
 
-  function counterCheck(){
-    if (counter == 0) {
-      document.getElementsByClassName("arrow").style.opacity =  "0";
-      counter ++;
-      }
-    if (counter > 0) {
-      return;
-    }
-  }
+//   function counterCheck(){
+//     if (counter == 0) {
+//       document.getElementsByClassName("arrow").style.opacity =  "0";
+//       counter ++;
+//       }
+//     if (counter > 0) {
+//       return;
+//     }
+//   }
 
-}
+// }
 
 
 
