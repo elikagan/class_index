@@ -91,7 +91,7 @@ class BubblesController < ApplicationController
   def destroy
     @bubble.destroy
     respond_to do |format|
-      format.html { redirect_to bubbles_path, notice: 'Posting was successfully destroyed.' }
+      format.html { redirect_to bubbles_path }
       format.json { head :no_content }
     end
   end
