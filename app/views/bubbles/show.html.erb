@@ -24,8 +24,8 @@
 <div class="meta_data_row_show">
 
 <span class="tag_link"><%= link_to @bubble.tag, find_path(:tag => @bubble.tag) %></span> | 
-          Posted by <%= link_to @bubble.user.name, @bubble.user %> 
-          <%= link_to @bubble.comments.count, @bubble %><%= link_to ' Comments', @bubble %> | 
+          Posted by <%= link_to @bubble.user.name, @bubble.user %> | 
+          <%= @bubble.comments.count %><%= ' Comments' %> | 
           <%= @bubble.time_ago_in_words(@bubble.created_at) %> ago |
           modified <%= @bubble.time_ago_in_words(@bubble.updated_at) %> ago | 
         
