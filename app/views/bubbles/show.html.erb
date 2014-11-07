@@ -1,49 +1,69 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @bubble.title %>
-</p>
+<div class="voting_container_show">
 
-<%= link_to "upvote", upvote_path(:id => @bubble.id) %>
-<%= @bubble.vote_count %>
-<%= link_to "downvote", downvote_path(:id => @bubble.id) %>
+  <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-up"), upvote_path(:id => @bubble.id) %></div>
+
+  <div class="votes"><%= @bubble.vote_count %></div>
+
+  <div class="arrow"><%= link_to link_to content_tag(:i,nil, :class=>"fa fa-chevron-down"), downvote_path(:id => @bubble.id) %></div>
+</div>  
 
 
-<%= link_to @bubble.tag, find_path(:tag => @bubble.tag) %> | 
-          <% if current_user == @bubble.user %>
-          Posted by <%= link_to 'you', current_user %> |
-          <% else %>
-          Posted by <%= link_to @bubble.user.name, @bubble.user %> |
-          <% end %>
+
+
+
+
+  <div class="page_header_show"><%= @bubble.title %></div>
+
+
+
+
+<div class="show_row">
+
+
+<div class="meta_data_row_show">
+
+<span class="tag_link"><%= link_to @bubble.tag, find_path(:tag => @bubble.tag) %></span> | 
+          Posted by <%= link_to @bubble.user.name, @bubble.user %> 
           <%= link_to @bubble.comments.count, @bubble %><%= link_to ' Comments', @bubble %> | 
           <%= @bubble.time_ago_in_words(@bubble.created_at) %> ago |
           modified <%= @bubble.time_ago_in_words(@bubble.updated_at) %> ago | 
         
           <%= @bubble.score %> 
 
-
-<p>
-  <strong>Body:</strong>
-  <%= @bubble.body %>
-</p>
-<% if current_user == @bubble.user %>
-	<%= link_to 'Edit', edit_bubble_path(@bubble) %> | <%= link_to 'Delete', @bubble, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
-<br><br>
-<%= @bubble.comments.count %> Comments
-
-<div id="comments">
-  <%= render :partial => @bubble.comments.sort_by!(&:score).reverse
- %>
+    <% if current_user == @bubble.user %>
+    <span class="edit_delete">
+      <%= link_to content_tag(:i,nil, :class=>"fa fa-pencil"), edit_bubble_path(@bubble) %>
+    </span>
+    <span class="edit_delete">
+      <%= link_to content_tag(:i,nil, :class=>"fa fa-times"), @bubble, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+    </span>
 </div>
 
+</div>
+</div>
+
+
+
+  <p class="bubble_body"><%= @bubble.body %></p>
+    <div class="dashed_line"></div>
+
+
+<div class="page_header"><%= @bubble.comments.count %> Comments </div>
+    <div class="dashed_line"></div>
+
+
+  <%= render :partial => @bubble.comments.sort_by!(&:score).reverse%>
+
+<div class="left_indent_container">
 <% if current_user %>
+  
   <%= form_for [@bubble, Comment.new] do |f| %>
     <div class="field">
-      <%= f.text_area :body, :placeholder => "Add your comment here"  %>
+      <%= f.text_area :body, :class => "create_new_bubble_field", :id => "body_field", :placeholder => "Type your comment here"%>
     </div>
-    <%= f.submit "Add Comment" %>
+    <%= f.submit "Submit", :class => "login_button" %>
   <% end %>
 <% end %>
+</div>

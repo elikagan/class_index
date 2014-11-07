@@ -35,7 +35,7 @@ def upvotecomment
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @bubble, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @bubble }
         format.json { render :show, status: :created, location: @comment }
         @bubble.bubble_score
 

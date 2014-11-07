@@ -1,8 +1,63 @@
+<% if current_user %>
 
-  <% if current_user %>
-  <div class="create_new_post"><%= link_to '+ Create a new post', new_bubble_path %> </div>
+  <%= form_for(@bubble) do |f| %>
+  <% if @bubble.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bubble.errors.count, "error") %> prohibited this posting from being saved:</h2>
+
+      <ul>
+      <% @bubble.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 
+<div id="create_new_bubble_container">
+
+
+<table>
+  <tr class="new_bubble_top_line_container">
+    <%= f.text_field :title,:id => "title_field", :class => "create_new_bubble_field", :placeholder => "Add your posting title here"%>
+
+    <select class="new_bubble_pulldown" name="bubble[tag]">
+      <option value="" disabled selected>Add a category</option>
+      <option value="#rails">#rails</option>
+      <option value="#erb">#erb</option>
+      <option value="#ruby">#ruby</option>
+      <option value="#html">#html</option>
+      <option value="#css">#css</option>
+      <option value="#js">#js</option>
+      <option value="#angular">#angular</option>
+      <option value="#mongodb">#mongodb</option>
+      <option value="#firebase">#firebase</option>
+      <option value="#frontend">#frontend</option>
+      <option value="#backend">#backend</option>
+      <option value="#gossip">#gossip</option>
+    </select>
+  </tr>  
+  </table>  
+    <div> <%= f.text_area :body, :class => "create_new_bubble_field", :id => "body_field", :placeholder => "Add your posting body here"%></div>
+  
+
+  <div id="submit_cancel_container">
+    <%= f.submit "Submit", :class => "submit_button" %>
+    <div id="cancel_post"><i class ="fa fa-times"></i></div>
+  </div>
+
+
+</div>
+<% end %>
+
+
+
+
+  <div id="create_new_post">+ Create a new post</div>
+<% end %>
+
+<% if !current_user %>
+  <div class="top_space"></div>
+<% end %>
 
 <div class="bubbles_container">
 
@@ -13,6 +68,10 @@
   <div class="dashed_line"></div>
 
   <table class="bubble_table">
+    
+
+
+
     <td class_"voting_table_cell">
       <div class="voting_container">
           <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-up"), upvote_path(:id => bubble.id) %></div>
@@ -25,12 +84,19 @@
           <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-down"), downvote_path(:id => bubble.id) %></div>
 
       </div>
+    
+
+
+
+
+
+
     </td>
     <td>
       <span class="score_stuff"><%= bubble.score %> | <%= bubble.time_bonus_value %></span>
 
       <div class="bubble_object_container">
-        <div id="bubble_title"><%= link_to bubble.title, bubble %></div>
+        <div class="bubble_title"><%= link_to bubble.title, bubble %></div>
         <div class="meta_data_row">
           <span class="tag_link"><%= link_to bubble.tag, find_path(:tag => bubble.tag) %>  </span>
 
@@ -53,6 +119,24 @@
 
   <% end %>
    
+<script>
+document.getElementById("create_new_post").addEventListener("click", expandCreateForm);
+document.getElementById("cancel_post").addEventListener("click", closeCreateForm);
 
+function expandCreateForm() {
+  document.getElementById("create_new_bubble_container").style.marginTop = "60px";
+  document.getElementById("create_new_post").style.opacity = "0";
+  document.getElementById("create_new_post").style.marginTop = "-40px";
+  document.getElementById("submit_cancel_container").style.marginBottom = "80px";
+}
+
+function closeCreateForm() {
+  document.getElementById("create_new_bubble_container").style.marginTop = "-260px";
+   document.getElementById("create_new_post").style.opacity = "1";
+  document.getElementById("create_new_post").style.marginTop = "55px";
+  document.getElementById("submit_cancel_container").style.marginBottom = "150px";
+}
+
+</script>
 
 

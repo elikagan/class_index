@@ -8,7 +8,9 @@ class BubblesController < ApplicationController
   # GET /bubbles.json
   def index
     @bubbles = Bubble.desc(:score)
-
+    if current_user
+      @bubble = current_user.bubbles.build
+    end
 
   end
 
@@ -36,15 +38,20 @@ class BubblesController < ApplicationController
   # GET /bubbles/1
   # GET /bubbles/1.json
   def show
+    @bubble = Bubble.find(params[:id])
+
   end
 
   # GET /bubbles/new
   def new
     @bubble = current_user.bubbles.build
+
   end
 
   # GET /bubbles/1/edit
   def edit
+
+    @bubble = Bubble.find(params[:id])
   end
 
   # POST /bubbles
@@ -84,7 +91,7 @@ class BubblesController < ApplicationController
   def destroy
     @bubble.destroy
     respond_to do |format|
-      format.html { redirect_to bubbles_url, notice: 'Posting was successfully destroyed.' }
+      format.html { redirect_to bubbles_path, notice: 'Posting was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

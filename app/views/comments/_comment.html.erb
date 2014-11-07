@@ -1,11 +1,23 @@
-<%= div_for(comment) do |f| %>
-  <p> <%= comment.body %></p>
 
-	<%= link_to "upvote", upvotecomment_path(:id => comment.id) %>
-	<%= comment.vote_count %> |
-  <%= link_to "downvote", downvotecomment_path(:id => comment.id) %>
+<%= div_for(comment) do |f| %>
+   <div class="voting_container_show">
+
+  <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-up"), upvotecomment_path(:id => comment.id) %></div>
+
+  <div class="votes"><%= comment.vote_count %></div>
+
+  <div class="arrow"><%= link_to link_to content_tag(:i,nil, :class=>"fa fa-chevron-down"), downvotecomment_path(:id => comment.id) %></div>
+</div>  
+
+<div class="comments"><%= comment.body %></div>
+
   
 
+
+ 
+
+
+<div class="meta_data_row_show" id="comment_left_indent">
 	<% if current_user == @bubble.user %>
           Commented by <%= link_to 'you', current_user %> | <%= comment.time_ago_in_words(comment.created_at) %> ago
   <% else %>
@@ -15,6 +27,8 @@
   <% end %> 
 
   | <%= comment.score %>
-<% end %>
 
+ </div> 
+  <div class="dashed_line"></div>
+<% end %>
 

@@ -1,38 +1,60 @@
-<br>
-<br>
-<p>
-  <strong>Posts by <%= @user.name %> </strong>
-</p>
-  <% @user.bubbles.sort_by!(&:created_at).reverse.each do |bubble|%>
 
-	        <br>
-	     
-	        <div><%= link_to bubble.title, bubble %></div>
+  <div class="page_header">Posts by <%= @user.name %> </div>
 
 
-	        <%= link_to "upvote", upvote_path(:id => bubble.id) %>
-	        <%= bubble.vote_count %>
-	        <%= link_to "downvote", downvote_path(:id => bubble.id) %>
-	        
-	         
-	        <div>
-	          <%= link_to bubble.tag, find_path(:tag => bubble.tag) %> | 
-	          <% if current_user == bubble.user %>
-	          Posted by <%= link_to 'you', current_user %> |
-	          <% else %>
-	          Posted by <%= link_to bubble.user.name, bubble.user %> |
-	          <% end %>
-	          <%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %> | 
-	          <%= bubble.time_ago_in_words(bubble.created_at) %> ago |
-	          modified <%= bubble.time_ago_in_words(bubble.updated_at) %> ago | 
-	        
-	          <%= bubble.score %>  
-	          <br>
-	       </div>
 
-	        <% if current_user == bubble.user %> 
-	        <div><%= link_to 'Edit', edit_bubble_path(bubble) %> | <%= link_to 'Delete', bubble, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-	        <% end %>
+<div class="bubbles_container">
 
-	      
-	    <% end %>
+ <% @user.bubbles.sort_by!(&:created_at).reverse.each do |bubble|%>
+  <% bubble.time_bonus %><% bubble.bubble_score %>
+
+
+  <div class="dashed_line"></div>
+
+  <table class="bubble_table">
+    <td class_"voting_table_cell">
+      <div class="voting_container">
+          <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-up"), upvote_path(:id => bubble.id) %></div>
+
+
+          <div class="votes"><%= bubble.vote_count %></div>
+     
+
+ 
+          <div class="arrow"><%= link_to content_tag(:i,nil, :class=>"fa fa-chevron-down"), downvote_path(:id => bubble.id) %></div>
+
+      </div>
+    </td>
+    <td>
+      <span class="score_stuff"><% if current_user == bubble.user %> 
+	        <span class="meta_link"><%= link_to 'Edit', edit_bubble_path(bubble) %></span>
+	        <span class="meta_link"><%= link_to 'Delete', bubble, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+	        <% end %><%= bubble.score %> | <%= bubble.time_bonus_value %></span>
+
+      <div class="bubble_object_container">
+        <div class="bubble_title"><%= link_to bubble.title, bubble %></div>
+        <div class="meta_data_row">
+          <span class="tag_link"><%= link_to bubble.tag, find_path(:tag => bubble.tag) %>  </span>
+
+          
+           <span class="meta_link"><%= link_to bubble.user.name, bubble.user %></span>
+          
+
+          <%= bubble.time_ago_in_words(bubble.created_at) %> ago
+
+          <span class="meta_link"><%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %>
+    		</span>   
+
+    	
+	               
+          
+          
+
+        </div>
+
+      </div
+    </td>
+
+    </table>
+
+  <% end %>

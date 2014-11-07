@@ -1,33 +1,38 @@
+
 <%= form_for(@bubble) do |f| %>
-  <% if @bubble.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bubble.errors.count, "error") %> prohibited this posting from being saved:</h2>
 
-      <ul>
-      <% @bubble.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="left_indent_container">
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+
+  <div class="create_new_bubble_container">
+
+    <table>
+      <tr class="new_bubble_top_line_container">
+        <%= f.text_field :title,:id => "title_field", :class => "create_new_bubble_field", :placeholder => "Add your posting title here"%>
+
+        <select class="new_bubble_pulldown" name="bubble[tag]">
+          <option value="" disabled selected>Add a category</option>
+          <option value="#rails">#rails</option>
+          <option value="#erb">#erb</option>
+          <option value="#ruby">#ruby</option>
+          <option value="#html">#html</option>
+          <option value="#css">#css</option>
+          <option value="#js">#js</option>
+          <option value="#angular">#angular</option>
+          <option value="#mongodb">#mongodb</option>
+          <option value="#firebase">#firebase</option>
+          <option value="#frontend">#frontend</option>
+          <option value="#backend">#backend</option>
+          <option value="#gossip">#gossip</option>
+        </select>
+      </tr>  
+      </table>  
+      <div> 
+        <%= f.text_area :body, :class => "create_new_bubble_field", :id => "body_field", :placeholder => "Add your posting body here"%>
+      </div>
+      <div class="actions">
+        <%= f.submit "Submit", :class => "submit_button" %>
+      </div>
   </div>
-  
-  <div class="field">
-    <%= f.label :tag %><br>
-    <%= f.select :tag, [['#rails'], ['#erb'], ['#ruby'], ['#html'], ['#css'], ['#js'], ['#angular', 7], ['#mongodb'], ['#firebase'], ['#frontend'], ['#backend'], ['#gossip']] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Save" %>
-  </div>
-
-<% end %>
+        <% end %>
+</div>
