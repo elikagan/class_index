@@ -52,7 +52,9 @@
 
 
 
-  <div id="create_new_post">+ Create a new post</div>
+
+
+  <div id="create_new_post"><i class="fa fa-plus-square"></i>  <div class="create_post_text"> Create a new post</div></div>
 <% end %>
 
 <% if !current_user %>
@@ -95,7 +97,7 @@
           <div class="meta_data_row">  
             <span class="tag_link"><%= link_to bubble.tag, find_path(:tag => bubble.tag) %>  </span>
             <span class="meta_link"><%= link_to bubble.user.name, bubble.user %></span>
-
+            <%= bubble.time_ago_in_words(bubble.created_at) %> ago
             <span class="meta_link"><%= link_to bubble.comments.count, bubble %><%= link_to ' Comments', bubble %>
             </span>
           </div>
@@ -116,14 +118,17 @@ document.getElementById("create_new_post").addEventListener("click", expandCreat
 document.getElementById("cancel_post").addEventListener("click", closeCreateForm);
 
 function expandCreateForm() {
+  document.getElementById("create_new_bubble_container").style.transform="scale(1,1)";;
   document.getElementById("create_new_bubble_container").style.marginTop = "60px";
   document.getElementById("create_new_post").style.opacity = "0";
+  
   document.getElementById("create_new_post").style.marginTop = "-40px";
   document.getElementById("submit_cancel_container").style.marginBottom = "80px";
 }
 
 function closeCreateForm() {
   document.getElementById("create_new_bubble_container").style.marginTop = "-260px";
+
    document.getElementById("create_new_post").style.opacity = "1";
   document.getElementById("create_new_post").style.marginTop = "55px";
   document.getElementById("submit_cancel_container").style.marginBottom = "150px";

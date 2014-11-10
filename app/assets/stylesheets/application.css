@@ -1,6 +1,7 @@
 a, a:visited, a:hover, a:active {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 *:focus {outline:none;}
@@ -13,6 +14,13 @@ body{
 	background-color: #f4f1e9;
 
 }
+
+
+.logo_style{
+	font-size: 100px;
+	margin-top: -20px;
+}
+
 
 .big_gear{
 	background-image: url('/assets/big_gear4.svg');
@@ -27,17 +35,17 @@ body{
 	font-family: 'Bitter', serif;
 	font-weight: 600;
 	vertical-align: middle;
-	padding-top: 50px;
-	padding-left: 5px;
+	padding-top: 45px;
+	padding-left: 0px;
 	color: #3e5b68;
 	transform-origin: left top;
 	transform: scale(.5,.5);
-	transition: all .3s ease-in-out;
+
 }
 
 .big_gear:hover{
 	transform-origin: left top;
-	transition: all .3s ease-in-out;
+
 	color: #24aace;
 }
 
@@ -70,6 +78,25 @@ body{
 	transition: all .3s ease-in-out;
 }
 
+.create_post_text{
+	padding-top: 7px;
+	padding-left: 32px;
+	display: inline-block;
+	height: 30px;
+	vertical-align: bottom;
+	position: absolute;
+	font-weight: 300;
+}
+
+
+.fa-plus-square{
+	margin-right: 3px;
+	margin-left: -5px;
+	margin-bottom:10px;
+	margin-top: -100px;
+	transform-origin: left top;
+	transform: scale(2,2);
+}
 
 #create_new_post{
 	margin-left: 100px;
@@ -82,6 +109,7 @@ body{
 	transition: all .3s ease-in-out;
 	transform-origin: left 50%;
 	cursor: pointer;
+	vertical-align: middle;
   	
 
 
@@ -93,6 +121,7 @@ body{
 	transform-origin: left 50%;
 	transform: scale(1.1,1.1);
 	transition: all .3s ease-in-out;
+
 }
 
 
@@ -102,6 +131,8 @@ body{
 	margin-left: 100px;
 	margin-top: -260px;
 	transition: all .3s ease-in-out;
+	transform: scale(1,0);
+	transform-origin: left top;
 }
 
 .new_bubble_top_line_container{
@@ -133,11 +164,16 @@ body{
 	position: relative;
 	float: left;
 	border-radius: 4px;
+	transition: all .3s ease-in-out;
+}
 
+.new_bubble_pulldown::-webkit-input-placeholder {
+    color: red;
 }
 
 .new_bubble_pulldown:hover{
-
+border: 1px solid #3e5b68;
+transition: all .3s ease-in-out;
 }
 
 #title_field{
@@ -203,6 +239,7 @@ height:40px;
 
 #cancel_post{
 	vertical-align: middle;
+	cursor: pointer;
 	display: table-cell;
 	float: left;
 	margin-top: 1vw;
@@ -298,7 +335,7 @@ height:40px;
 .bubble_object_container:hover{
 	transform-origin: left 50%;
 	transition: all .3s ease-in-out;
-  	transform: scale(1,1);
+  	transform: scale(1.1,1.1);
 	
 }
 
@@ -405,6 +442,20 @@ height:40px;
 	font-family: 'Bitter', serif;
 	text-decoration: none;
 	font-size: 40px;
+	color: #afafaf;
+	font-weight: 500;
+	transition: all .3s ease-in-out;
+	transform-origin: left 50%;
+	cursor: pointer;
+
+}
+
+.page_header_comments{
+	margin-left: 100px;
+	margin-top: 40px;
+	font-family: 'Bitter', serif;
+	text-decoration: none;
+	font-size: 30px;
 	color: #afafaf;
 	font-weight: 500;
 	transition: all .3s ease-in-out;
@@ -560,6 +611,7 @@ height:40px;
 	margin-top: 20px;
 	margin-bottom: 10px;
 	margin-left: 100px;
+	line-height: 34px;
 
 }
 

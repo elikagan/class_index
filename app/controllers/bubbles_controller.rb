@@ -11,6 +11,7 @@ class BubblesController < ApplicationController
     if current_user
       @bubble = current_user.bubbles.build
     end
+    @user = current_user
 
   end
 
@@ -100,6 +101,10 @@ class BubblesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bubble
       @bubble = Bubble.find(params[:id])
+    end
+
+    def prop_params
+      params.require(:prop).permit(:name, :body, :tag)
     end
 
 def authorized_user

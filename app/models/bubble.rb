@@ -13,6 +13,9 @@ class Bubble
   belongs_to :user
   has_many :comments
 
+  validates :title, presence: :true
+  validates :body, presence: :true
+  validates :tag, presence: :true
 
   def time_bonus
     
@@ -32,6 +35,7 @@ class Bubble
   	score = self.comments.count * 7 + self.vote_count * 5 + self.time_bonus_value
   	self.update_attribute(:score, score)
   end
+
 
 
 end
